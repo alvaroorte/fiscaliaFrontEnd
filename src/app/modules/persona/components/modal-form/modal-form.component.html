@@ -1,0 +1,64 @@
+<form [formGroup]="formPerson">
+
+    <div class="grid">
+        <div class="col-12">
+            <p-dialog [(visible)]="openModal" [style]="{width: '50vw'}" header={{tittleForm}} [modal]="true" class="p-fluid">
+                <ng-template pTemplate="content">
+                    
+                    <p class="text-center mb-6"><p-badge [value]="'Los campos marcados con * son obligatorios'"></p-badge></p>
+                    
+               
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="nombre" [(ngModel)]="person.nombre" formControlName="nombre" class="p-inputtext-sm capitalize mt-1" />
+                            <label htmlFor="nombre" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Nombre</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formPerson.controls['nombre'].touched && formPerson.get('nombre')?.hasError('required')" >El campo Nombre es obligatorio</small>
+                    </div>
+                   
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="apellidoPat" [(ngModel)]="person.apellidoPat" formControlName="apellidoPat" class="p-inputtext-sm mt-1" />
+                            <label htmlFor="apellidoPat" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Apellido Paterno</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formPerson.controls['apellidoPat'].touched && formPerson.get('apellidoPat')?.hasError('required')" >El campo Valor es obligatorio</small>
+                    </div>
+                    
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="apellidoMat" [(ngModel)]="person.apellidoMat" formControlName="apellidoMat" class="p-inputtext-sm capitalize mt-1" />
+                            <label htmlFor="apellidoMat" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Apellido Materno</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formPerson.controls['apellidoMat'].touched && formPerson.get('apellidoMat')?.hasError('required')" >El campo Apellido Materno es obligatorio</small>
+                    </div>
+
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="ci" [(ngModel)]="person.ci" formControlName="ci" class="p-inputtext-sm capitalize mt-1" />
+                            <label htmlFor="ci" class="text-lg font-bold text-800"><span class="text-red-500">*</span> CI</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formPerson.controls['ci'].touched && formPerson.get('ci')?.hasError('required')" >El campo CI es obligatorio</small>
+                    </div>
+
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="celular" [(ngModel)]="person.celular" formControlName="celular" class="p-inputtext-sm capitalize mt-1" />
+                            <label htmlFor="celular" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Celular</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formPerson.controls['celular'].touched && formPerson.get('celular')?.hasError('required')" >El campo Celular es obligatorio</small>
+                    </div>
+                   
+
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <input type="hidden" pInputText id="id" [(ngModel)]="person.id" formControlName="id"/>
+                    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-secondary p-button-rounded mr-2 p-button-sm sombra-black" (click)="hideModal()"></button>
+                    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded mr-2 sombra-black p-button-sm" (click)="savePerson()"
+                        [loading]="isLoading"
+                        [disabled]="formPerson.invalid">
+                    </button>
+                </ng-template>
+            </p-dialog>
+        </div>
+    </div>
+</form>

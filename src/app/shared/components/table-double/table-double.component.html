@@ -1,0 +1,36 @@
+
+<p-pickList 
+        [source]="sourceProducts()" 
+        [target]="targetProducts()" 
+        sourceHeader="Disponibles" 
+        targetHeader="Asignados" 
+        [dragdrop]="true" 
+        [responsive]="true" 
+        [sourceStyle]="{ height: '30rem' }"
+        [targetStyle]="{ height: '30rem' }" 
+        filterBy="name" 
+        sourceFilterPlaceholder="Buscar" 
+        targetFilterPlaceholder="Buscar" 
+        breakpoint="800px"
+        [showSourceControls]="false"
+        [showTargetControls]="false"
+        [stripedRows]="true"
+        (onMoveToSource)="removeItem($event)"
+        (onMoveToTarget)="addItem($event)"
+        (onMoveAllToSource)="allRemoveItems($event)"
+        (onMoveAllToTarget)="allAddItems($event)"
+        (onSourceSelect)="changeSelectedSubcategory($event)">
+        <ng-template let-subCategory pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center gap-3">
+                <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round" src="https://primefaces.org/cdn/primeng/images/demo/subCategory/{{ subCategory.image }}" alt="{item.name}" /> -->
+                <div class="flex-1 flex flex-column gap-2">
+                    <span class="font-bold"><i [class]="'mr-2 pi '+ subCategory.detail "></i> {{ subCategory.name }} </span>
+                    <!-- <div class="flex align-products-center gap-2">
+                        <i class="pi pi-tag text-sm"></i>
+                        <span>{{ subCategory.value }}</span>
+                    </div> -->
+                </div>
+                <!-- <span class="font-bold text-900">{{ '$' + subCategory.ranking }}</span> -->
+            </div>
+        </ng-template>
+</p-pickList>

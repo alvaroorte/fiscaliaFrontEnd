@@ -1,0 +1,76 @@
+
+
+  availableProducts: Product[] | undefined;
+  selectedProducts: Product[] | undefined;
+  draggedProduct: Product | undefined | null;
+
+  dragStart(product: Product) {
+      this.draggedProduct = product;
+  }
+
+  drop() {
+    console.log("drop");
+      if (this.draggedProduct && (this.availableProducts as Product[]).find( product => product.id == this.draggedProduct!.id ) ) {
+          let draggedProductIndex = this.findIndex(this.draggedProduct, ( this.availableProducts as Product[] ));
+          this.selectedProducts = [...(this.selectedProducts as Product[]), this.draggedProduct];
+          this.availableProducts = this.availableProducts?.filter((val, i) => i != draggedProductIndex);
+          this.draggedProduct = null;
+      }
+  }
+
+  drop2(  ) {
+    console.log("drop2");
+      if (this.draggedProduct && (this.selectedProducts as Product[]).find( product => product.id == this.draggedProduct!.id ) ) {
+          let draggedProductIndex = this.findIndex(this.draggedProduct, (this.selectedProducts as Product[]));
+          this.availableProducts = [...(this.availableProducts as Product[]), this.draggedProduct];
+          this.selectedProducts = this.selectedProducts?.filter((val, i) => i != draggedProductIndex);
+          this.draggedProduct = null;        
+      }
+  }
+
+  findIndex(product: Product, array: Product[]) {
+    console.log("idex2");
+      let index = -1;
+      for (let i = 0; i < array.length; i++) {
+          if (product.id === array[i].id) {
+              index = i;
+              break;
+          }
+      }
+      return index;
+  }
+
+  dragEnd() {
+    console.log("fin");
+      this.draggedProduct = null;
+  }
+    ngOnInit(): void {
+      
+      this.selectedProducts = [];
+      this.availableProducts = [
+          {id:1, name: 'Black Watch', price: 1, stock: 5, description: "sad", categoryId:1, category: null},
+          {id:2, name: 'Bamboo Watch', price: 1, stock: 5, description: "sad", categoryId:1, category: null}
+      ]
+    }
+}
+
+
+
+
+<div class="card flex flex-wrap gap-6">
+<div class="p-2 border-1 bg-cyan-50 surface-border border-round w-25rem" pDroppable (onDrop)="drop2()">
+    <ul class="list-none flex flex-column gap-2 p-0 m-0">
+        <li *ngFor="let product of availableProducts" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
+            {{product.name}}
+        </li>
+    </ul>
+</div>
+<div class="p-2 border-1 bg-cyan-50 surface-border border-round w-25rem" pDroppable (onDrop)="drop()">
+    <p class="text-center surface-border border-bottom-1">Drop Zone</p>
+    <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="selectedProducts" >
+        <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
+            {{product.name}}
+        </li>
+    </ul>
+</div>
+</div>

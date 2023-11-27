@@ -1,0 +1,33 @@
+<header class="pt-2 pb-1 px-4 flex overflow-hidden sticky top-0 header-main" style="z-index: 100;" >
+    <div class="flex-none flex align-items-center justify-content-center">
+        <img src="/src/assets/images/logo-ende-tecnologias.png" alt="" class="image-logo px-3 border-2 border-round-3xl">
+    </div>
+    <nav class="flex-grow-1 flex align-items-center justify-content-center">
+        <ul class="flex gap-5 font-semibold">
+            <li class="py-1 yellow-hover-round">
+                <a class="px-2 py-1 lynch-700" routerLink="home" routerLinkActive='header-active'>Soporte</a>
+            </li>
+            <li class="py-1 yellow-hover-round">
+                <a class="px-2 py-1 lynch-700" routerLink="/enterprises" routerLinkActive='header-active'>Preguntas</a>
+            </li>
+            <li class="py-1 yellow-hover-round">
+                <a class="px-2 py-1 lynch-700" routerLink="/tickets" routerLinkActive='header-active'>Tickets</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="flex-none flex align-items-center justify-content-center px-5"> 
+        <a *ngIf="username() != 'Login'; else elseBlock" (click)="menu.toggle($event)" class="yellow-hover-round lynch-600 font-medium px-2 py-1">
+            <span class="cursor-pointer"  >{{ username() }}</span> 
+            <i class="pi pi-user ml-2 "></i> 
+        </a>
+        <ng-template #elseBlock>
+            <a (click)="setOpenModalLogin()" class="yellow-hover-round lynch-600 font-medium px-2 py-1">
+                <span class="cursor-pointer" >Login</span>
+                <i class="pi pi-user ml-2 "></i>  
+            </a>
+        </ng-template>
+    </div>
+    
+</header>
+<p-tieredMenu #menu [model]="optionsUser" [popup]="true"></p-tieredMenu>
+

@@ -1,0 +1,61 @@
+@import "../../../../style-colors.scss";
+
+li {
+    list-style-type: none;
+  }
+
+.header-main {
+    background-color: #ffffff77;
+    backdrop-filter: blur(8px);
+}
+
+
+a {
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.image-logo {
+    max-width: 7rem;
+    border-color: $border-yellow !important;
+    // max-height: 7rem;
+}
+
+.yellow-hover-round {
+    transition: transform 0.3s ease-in-out;
+}
+
+.yellow-hover-round:hover {
+    box-sizing: border-box;
+    border-radius: 10px;
+    border-width: 2px !important;
+    border-style: solid;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-color: $border-yellow;
+    transform: scale(1.1) translateY(-5px);
+}
+
+.header-active {
+    box-sizing: border-box;
+    border-radius: 10px;
+    border-width: 2px !important;
+    border-style: solid;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-color: $border-yellow;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+

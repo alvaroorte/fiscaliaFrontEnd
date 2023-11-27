@@ -1,2 +1,2 @@
-# fiscaliaFrontEnd
-fiscaliaFrontEnd en angular
+# clicketFrontEnd
+aplicación de tickets
