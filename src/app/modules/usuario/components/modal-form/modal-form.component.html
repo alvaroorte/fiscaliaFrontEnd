@@ -1,0 +1,39 @@
+<form [formGroup]="formUser">
+
+    <div class="grid">
+        <div class="col-12">
+            <p-dialog [(visible)]="openModal" [style]="{width: '50vw'}" header={{tittleForm}} [modal]="true" class="p-fluid">
+                <ng-template pTemplate="content">
+                    
+                    <p class="text-center mb-6"><p-badge [value]="'Los campos marcados con * son obligatorios'"></p-badge></p>
+                    
+               
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="usuario" [(ngModel)]="user.usuario" formControlName="usuario" class="p-inputtext-sm capitalize mt-1" />
+                            <label htmlFor="usuario" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Nombre</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formUser.controls['usuario'].touched && formUser.get('usuario')?.hasError('required')" >El campo Usuario es obligatorio</small>
+                    </div>
+                   
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="idFuncionario" [(ngModel)]="user.idFuncionario" formControlName="idFuncionario" class="p-inputtext-sm mt-1" />
+                            <label htmlFor="idFuncionario" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Funcionario</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formUser.controls['idFuncionario'].touched && formUser.get('idFuncionario')?.hasError('required')" >El campo Funcionario es obligatorio</small>
+                    </div>
+                    
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <input type="hidden" pInputText id="id" [(ngModel)]="user.id" formControlName="id"/>
+                    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-secondary p-button-rounded mr-2 p-button-sm sombra-black" (click)="hideModal()"></button>
+                    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded mr-2 sombra-black p-button-sm" (click)="saveUser()"
+                        [loading]="isLoading"
+                        [disabled]="formUser.invalid">
+                    </button>
+                </ng-template>
+            </p-dialog>
+        </div>
+    </div>
+</form>

@@ -6,7 +6,13 @@ const routes: Routes = [
   { path: '', redirectTo: '/people', pathMatch: 'full' },
   {
     path: 'people',
-    loadComponent: () => import('./modules/persona/persona.component').then(m => m.PersonaComponent)
+    loadComponent: () => import('./modules/persona/persona.component').then(c => c.PersonaComponent)
+    // loadChildren:  () => import('./modules/persona/persona.module').then(m => m.PersonaModule),
+    
+  },
+  {
+    path: 'users',
+    loadComponent: () => import('./modules/usuario/usuario.component').then(c => c.UsuarioComponent)
     // loadChildren:  () => import('./modules/persona/persona.module').then(m => m.PersonaModule),
     
   },

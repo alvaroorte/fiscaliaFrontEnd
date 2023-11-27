@@ -1,6 +1,6 @@
 <p-table
     #dt1
-    [value]="people()"
+    [value]="users()"
     [paginator]="true"
     [rows]="rows"
     [showCurrentPageReport]="true"
@@ -31,20 +31,14 @@
     
     <ng-template pTemplate="header">
         <tr>
-            <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-            <th pSortableColumn="apellidoPat">Apellido Paterno <p-sortIcon field="apellidoPat"></p-sortIcon></th>
-            <th pSortableColumn="apellidoMat">Apellido Materno <p-sortIcon field="apellidoMat"></p-sortIcon></th>
-            <th pSortableColumn="ci">Ci <p-sortIcon field="ci"></p-sortIcon></th>
-            <th pSortableColumn="ci">Celular <p-sortIcon field="ci"></p-sortIcon></th>
+            <th pSortableColumn="usuario">Usuario <p-sortIcon field="usuario"></p-sortIcon></th>
+            <th pSortableColumn="idFuncionario">Nombre Funcionario <p-sortIcon field="idFuncionario"></p-sortIcon></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-person>
-        <tr [pSelectableRow]="person">
-            <td>{{ person.nombre }}</td>
-            <td>{{ person.apellidoPat }}</td>
-            <td>{{ person.apellidoMat }}</td>
-            <td>{{ person.ci }}</td>
-            <td>{{ person.celular }}</td>
+    <ng-template pTemplate="body" let-user>
+        <tr [pSelectableRow]="user">
+            <td>{{ user.usuario }}</td>
+            <td>{{ user.idFuncionario }}</td>
         </tr>
     </ng-template>
 </p-table>

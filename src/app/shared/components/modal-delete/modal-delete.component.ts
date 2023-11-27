@@ -41,7 +41,7 @@ export class ModaldeleteComponent {
     this.openModalDelete(false);
     this.serviceGeneric.delete( parseInt(this.object) ).subscribe({
       next: ( res:string ) => {
-        this.helpersService.messageNotification("success", "Correcto", res, null);
+        this.helpersService.messageNotification("success", "Correcto", "", null);
         this.tableComponent.reload();
       },
       error: (err: any) => { 

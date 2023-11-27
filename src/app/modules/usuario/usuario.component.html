@@ -9,10 +9,10 @@
                 <div class="col-12 fadeindown animation-duration-400">
                     <div class="sombra-black border-round-xl p-2 surface-0">
                         <app-toolbar-common 
-                            [serviceGeneric]="personService" [object]="object()"/> 
+                            [serviceGeneric]="userService" [object]="object()"/> 
                         <app-modal-form></app-modal-form>
                         <app-table (rowSelected)="setObject($event)" ></app-table>
-                        <app-modal-delete [serviceGeneric]="personService" [object]="object().id"></app-modal-delete>
+                        <app-modal-delete [serviceGeneric]="userService" [object]="object().id"></app-modal-delete>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,8 @@ import { PersonService } from 'src/app/modules/persona/services/person.service';
 import { Person } from '@core/models/Person';
 import { ParametersService } from '@parameter/services/parameters.service';
 import { Parameter } from '@core/models/Parameter';
+import { UsuarioService } from 'src/app/modules/usuario/services/usuario.service';
+import { User } from '@core/models/User';
 
 @Component({
   selector: 'app-toolbar-common',
@@ -19,8 +21,8 @@ import { Parameter } from '@core/models/Parameter';
 export class ToolbarComponent {
 
 
-  @Input() serviceGeneric: PersonService | ParametersService | null = null;
-  @Input() object: Person | Parameter | null = null;
+  @Input() serviceGeneric: PersonService | ParametersService | UsuarioService | null  = null;
+  @Input() object: Person | Parameter | User | null = null;
   tableComponent: any;
   formComponent: any;
   modalDeleteComponent: any;
