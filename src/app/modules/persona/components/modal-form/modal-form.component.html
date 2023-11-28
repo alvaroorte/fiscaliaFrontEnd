@@ -34,7 +34,7 @@
 
                     <div class="form-group field mt-6">
                         <span class="p-float-label">
-                            <input type="text" pInputText id="ci" [(ngModel)]="person.ci" formControlName="ci" class="p-inputtext-sm capitalize mt-1" />
+                            <input type="number" pInputText id="ci" [(ngModel)]="person.ci" formControlName="ci" class="p-inputtext-sm capitalize mt-1" />
                             <label htmlFor="ci" class="text-lg font-bold text-800"><span class="text-red-500">*</span> CI</label>
                         </span>
                         <small class="p-error block mt-2" *ngIf="formPerson.controls['ci'].touched && formPerson.get('ci')?.hasError('required')" >El campo CI es obligatorio</small>
@@ -42,7 +42,7 @@
 
                     <div class="form-group field mt-6">
                         <span class="p-float-label">
-                            <input type="text" pInputText id="celular" [(ngModel)]="person.celular" formControlName="celular" class="p-inputtext-sm capitalize mt-1" />
+                            <input type="number" pInputText id="celular" [(ngModel)]="person.celular" formControlName="celular" class="p-inputtext-sm capitalize mt-1" />
                             <label htmlFor="celular" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Celular</label>
                         </span>
                         <small class="p-error block mt-2" *ngIf="formPerson.controls['celular'].touched && formPerson.get('celular')?.hasError('required')" >El campo Celular es obligatorio</small>

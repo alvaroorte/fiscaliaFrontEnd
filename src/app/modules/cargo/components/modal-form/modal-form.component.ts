@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Person } from '@core/models/Person';
 import { HelpersService } from '@core/services/helpers.service';
-import { PersonService } from '@person/services/person.service';
+import { CargoService } from '../../services/cargo.service';
+import { Cargo } from '@core/models/Cargo';
 import { TableComponent } from '../table/table.component';
 
 @Component({
@@ -15,28 +15,25 @@ export class ModalFormComponent {
 
   private formBuilder = inject(FormBuilder);
   private helpersService = inject(HelpersService);
-  private personService = inject(PersonService);
+  private cargoService = inject(CargoService);
 
   ngOnInit() {
-    this.personService.eventFormComponent.emit(this);
-    this.personService.eventTableComponent.subscribe((tableComponent) => {
+    this.cargoService.eventFormComponent.emit(this);
+    this.cargoService.eventTableComponent.subscribe((tableComponent) => {
       this.tableComponent = tableComponent;
     });
   };
 
-  person!: Person; 
+  cargo!: Cargo; 
   openModal: boolean = false;
   tittleForm: string = "";
   tableComponent!: TableComponent;
   isLoading = false;
 
-  public formPerson: FormGroup = this.formBuilder.group({
+  public formCargo: FormGroup = this.formBuilder.group({
     id: [],
-    nombre: [, Validators.required,],
-    apellidoPat: [, [Validators.required]],
-    apellidoMat: [, Validators.required,],
-    ci: [, Validators.required,],
-    celular: [, Validators.required,]
+    descripcion: [, Validators.required,],
+    item: [, [Validators.required]]
   });
 
   hideModal() {
@@ -46,16 +43,16 @@ export class ModalFormComponent {
 
   openCreate(){
     this.reset();
-    this.tittleForm = "Nueva Persona";
+    this.tittleForm = "Nuevo Cargo";
     this.openModal = true;
   };
 
   openEdit(id: number ){
     this.reset();
-    this.tittleForm="Editar Persona";
-    this.personService.getById(id).subscribe({
+    this.tittleForm="Editar Cargo";
+    this.cargoService.getById(id).subscribe({
       next: (res) => {
-        this.person = res;
+        this.cargo = res;
         this.openModal=true;
       },
       error: (err) => { 
@@ -65,11 +62,11 @@ export class ModalFormComponent {
     })
   };
 
-  savePerson() {
+  saveCargo() {
     this.isLoading = true;
-    if (this.formPerson.valid) {
-      if(this.person.id){
-        this.submitUpdate(this.person.id);
+    if (this.formCargo.valid) {
+      if(this.cargo.id){
+        this.submitUpdate(this.cargo.id);
       }else{
         this.submitCreate();
       }
@@ -77,19 +74,19 @@ export class ModalFormComponent {
   };
   
   reset(): void {
-    this.formPerson.reset();
-    this.person = new Person;
+    this.formCargo.reset();
+    this.cargo = new Cargo;
     
   };
 
   submitCreate() {
-    const data: Person = {
-      ...this.formPerson.value,
+    const data: Cargo = {
+      ...this.formCargo.value,
     };
-    this.personService.create(data).subscribe({
+    this.cargoService.create(data).subscribe({
       next: (res) => { 
         this.tableComponent.reload();
-        this.helpersService.messageNotification("success", "Correcto", `La persona ${res.nombre} ha sido creada.`, 3000);
+        this.helpersService.messageNotification("success", "Correcto", `El cargo ${res.descripcion} ha sido creado.`, 3000);
         this.hideModal();
         this.reset();
       },
@@ -102,14 +99,14 @@ export class ModalFormComponent {
   };
   
   submitUpdate(idParameter : number) {
-    const data: Person = {
-      ...this.formPerson.value,
+    const data: Cargo = {
+      ...this.formCargo.value,
     };
-    this.personService.update(idParameter, data).subscribe({
+    this.cargoService.update(idParameter, data).subscribe({
         next: (res) => { 
           this.tableComponent.reload();
-          this.tableComponent.selectedPerson.set( res );
-          this.helpersService.messageNotification("success", "Correcto", `La persona ${res.nombre} ha sido actualizada.`, 3000);
+          this.tableComponent.selectedCargo.set( res );
+          this.helpersService.messageNotification("success", "Correcto", `El cargo  ${res.descripcion} ha sido actualizado.`, 3000);
           this.hideModal();
           this.reset();
         },

@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
-import { Person } from '@core/models/Person';
-import { PersonService } from '../../services/person.service';
+import { Unidad } from '@core/models/Unidad';
+import { UnidadService } from '../../services/unidad.service';
 import { HelpersService } from '@core/services/helpers.service';
-import { ModalFormComponent } from '../modal-form/modal-form.component';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -13,30 +12,28 @@ import { Table } from 'primeng/table';
 })
 export class TableComponent {
 
-  @Output() rowSelected = new EventEmitter<Person>();
+  @Output() rowSelected = new EventEmitter<Unidad>();
 
-  private personService = inject(PersonService);
+  private unidadService = inject(UnidadService);
   private helpersService = inject(HelpersService);
 
-  people = signal<Person[]>([]);
-  selectedPerson = signal<Person>(new Person);
+  unidades = signal<Unidad[]>([]);
+  selectedUnidad = signal<Unidad>(new Unidad);
   firstPage = 0;
   rows = 5;
   optionsPage = signal([5, 10, 20]);
   loading = signal(false);
 
-  formComponent!: ModalFormComponent;
-
   ngOnInit() {
-    this.personService.eventTableComponent.emit(this);
+    this.unidadService.eventTableComponent.emit(this);
     this.getAll();
   }
 
   getAll(): void {
     this.loading.set(true);
-    this.personService.getAll().subscribe({
+    this.unidadService.getAll().subscribe({
       next: (res) => { 
-        this.people.set(res);
+        this.unidades.set(res);
         this.loading.set(false);
       },
       error: (err) => { 
@@ -60,13 +57,13 @@ export class TableComponent {
   } 
   
   onRowSelect(event: any) {
-    this.selectedPerson.set(event.data);
-    this.rowSelected.emit(this.selectedPerson());
+    this.selectedUnidad.set(event.data);
+    this.rowSelected.emit(this.selectedUnidad());
   }
 
   onRowUnselect() {
-    this.selectedPerson.set(new Person);
-    this.rowSelected.emit(this.selectedPerson());
-  }   
+    this.selectedUnidad.set(new Unidad);
+    this.rowSelected.emit(this.selectedUnidad());
+  }
 
 }

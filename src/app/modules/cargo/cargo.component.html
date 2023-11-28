@@ -2,17 +2,17 @@
     <p-fieldset styleClass="sombra-black">
         <ng-template pTemplate="header">
             <div class="flex align-items-center text-primary fadeinleft animation-duration-400">
-                <h2 class="text-white">Usuarios <span class="text-sm"> Gestión de usuarios</span> </h2>
+                <h2 class="text-white">Cargo <span class="text-sm"> Gestión de cargos</span> </h2>
             </div>
         </ng-template>
             <div class="grid">
                 <div class="col-12 fadeindown animation-duration-400">
                     <div class="sombra-black border-round-xl p-2 surface-0">
                         <app-toolbar-common 
-                            [serviceGeneric]="userService" [object]="object()"/> 
+                            [serviceGeneric]="cargoService" [object]="cargo()"/> 
                         <app-modal-form></app-modal-form>
                         <app-table (rowSelected)="setObject($event)" ></app-table>
-                        <app-modal-delete [serviceGeneric]="userService" [object]="object().id"></app-modal-delete>
+                        <app-modal-delete [serviceGeneric]="cargoService" [object]="cargo().id"></app-modal-delete>
                     </div>
                 </div>
             </div>

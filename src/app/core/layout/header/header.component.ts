@@ -44,6 +44,28 @@ export class HeaderComponent {
             items: [],
             routerLink: ['/users'],
             routerLinkActive: 'active'
+        },
+        {
+            label: 'Cargos',
+            icon: 'pi pi-user',
+            items: [],
+            routerLink: ['/cargo'],
+            routerLinkActive: 'active'
+        },
+        {
+            label: 'Unidad',
+            icon: 'pi pi-apple',
+            items: [
+                {
+                    label: 'Unidad 2',
+                    icon: 'pi pi-check',
+                    items: [],
+                    routerLink: ['/unidades'],
+                    routerLinkActive: 'active'
+                }
+            ],
+            routerLink: ['/unidades'],
+            routerLinkActive: 'active'
         }
     ] ;
 

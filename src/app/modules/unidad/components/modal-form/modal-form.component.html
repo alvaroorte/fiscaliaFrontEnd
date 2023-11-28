@@ -1,0 +1,30 @@
+<form [formGroup]="formUnidad">
+
+    <div class="grid">
+        <div class="col-12">
+            <p-dialog [(visible)]="openModal" [style]="{width: '50vw'}" header={{tittleForm}} [modal]="true" class="p-fluid">
+                <ng-template pTemplate="content">
+                    
+                    <p class="text-center mb-6"><p-badge [value]="'Los campos marcados con * son obligatorios'"></p-badge></p>
+               
+                    <div class="form-group field mt-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText id="descripcion" [(ngModel)]="unidad.descripcion" formControlName="descripcion" class="p-inputtext-sm capitalize mt-1" />
+                            <label htmlFor="descripcion" class="text-lg font-bold text-800"><span class="text-red-500">*</span> Descripción</label>
+                        </span>
+                        <small class="p-error block mt-2" *ngIf="formUnidad.controls['descripcion'].touched && formUnidad.get('descripcion')?.hasError('required')" >El campo Descripción es obligatorio</small>
+                    </div>
+
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <input type="hidden" pInputText id="id" [(ngModel)]="unidad.id" formControlName="id"/>
+                    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-secondary p-button-rounded mr-2 p-button-sm sombra-black" (click)="hideModal()"></button>
+                    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-rounded mr-2 sombra-black p-button-sm" (click)="saveUnidad()"
+                        [loading]="isLoading"
+                        [disabled]="formUnidad.invalid">
+                    </button>
+                </ng-template>
+            </p-dialog>
+        </div>
+    </div>
+</form>

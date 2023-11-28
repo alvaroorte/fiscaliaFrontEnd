@@ -1,6 +1,6 @@
 <p-table
     #dt1
-    [value]="users()"
+    [value]="unidades()"
     [paginator]="true"
     [rows]="rows"
     [showCurrentPageReport]="true"
@@ -10,18 +10,18 @@
     styleClass="p-datatable-sm p-datatable-gridlines"
     [(first)]="firstPage"
     selectionMode="single"
-    [selection]="selectedPerson()"
+    [selection]="selectedUnidad()"
     dataKey="id"
 
     [loading]="loading()"
-    [globalFilterFields]="['nombre', 'apelidoPat']"
+    [globalFilterFields]="['descripcion', 'item']"
     (onRowSelect)="onRowSelect($event)"
     (onRowUnselect)="onRowUnselect()"
 >
     <ng-template pTemplate="caption">
         <div class="flex">
             
-            <h3 >Listado de Usuarios</h3>
+            <h3 >Listado de Unidades</h3>
             <span class="p-input-icon-left ml-auto">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="onGlobalFilter(dt1, $event)" placeholder="Buscar en la tabla" />
@@ -31,14 +31,12 @@
     
     <ng-template pTemplate="header">
         <tr>
-            <th pSortableColumn="usuario">Usuario <p-sortIcon field="usuario"></p-sortIcon></th>
-            <th pSortableColumn="idFuncionario">Nombre Funcionario <p-sortIcon field="idFuncionario"></p-sortIcon></th>
+            <th pSortableColumn="descripcion">Descripción <p-sortIcon field="descripcion"></p-sortIcon></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-user>
-        <tr [pSelectableRow]="user">
-            <td>{{ user.usuario }}</td>
-            <td>{{ user.idFuncionario }}</td>
+    <ng-template pTemplate="body" let-unidad>
+        <tr [pSelectableRow]="unidad">
+            <td>{{ unidad.descripcion }}</td>
         </tr>
     </ng-template>
 </p-table>

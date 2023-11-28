@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { PrimeComponentsModule } from '@shared/prime-components/prime-components.module';
 import { PersonService } from 'src/app/modules/persona/services/person.service';
 import { Person } from '@core/models/Person';
-import { ParametersService } from '@parameter/services/parameters.service';
-import { Parameter } from '@core/models/Parameter';
 import { UsuarioService } from 'src/app/modules/usuario/services/usuario.service';
 import { User } from '@core/models/User';
+import { Cargo } from '@core/models/Cargo';
+import { CargoService } from 'src/app/modules/cargo/services/cargo.service';
+import { UnidadService } from 'src/app/modules/unidad/services/unidad.service';
+import { Unidad } from '@core/models/Unidad';
 
 @Component({
   selector: 'app-toolbar-common',
@@ -21,8 +23,8 @@ import { User } from '@core/models/User';
 export class ToolbarComponent {
 
 
-  @Input() serviceGeneric: PersonService | ParametersService | UsuarioService | null  = null;
-  @Input() object: Person | Parameter | User | null = null;
+  @Input() serviceGeneric: PersonService | UsuarioService | CargoService | UnidadService | null  = null;
+  @Input() object: Person | User | Cargo | Unidad | null = null;
   tableComponent: any;
   formComponent: any;
   modalDeleteComponent: any;

@@ -7,19 +7,22 @@ const routes: Routes = [
   {
     path: 'people',
     loadComponent: () => import('./modules/persona/persona.component').then(c => c.PersonaComponent)
-    // loadChildren:  () => import('./modules/persona/persona.module').then(m => m.PersonaModule),
     
   },
   {
     path: 'users',
     loadComponent: () => import('./modules/usuario/usuario.component').then(c => c.UsuarioComponent)
-    // loadChildren:  () => import('./modules/persona/persona.module').then(m => m.PersonaModule),
     
   },
   {
-    path: 'parameters',
-    loadChildren:  () => import('./modules/parameters/parameters.module').then(m => m.ParametersModule),
-    // loadChildren: () => import('./modules/products/products.module').then(m => m.ProductsModule)
+    path: 'cargo',
+    loadComponent: () => import('./modules/cargo/cargo.component').then(c => c.CargoComponent)
+    
+  },
+  {
+    path: 'unidades',
+    loadComponent: () => import('./modules/unidad/unidad.component').then(c => c.UnidadComponent)
+    
   },
   {
     path: '**',

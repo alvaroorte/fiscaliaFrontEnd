@@ -20,7 +20,6 @@ export class PersonaComponent {
 
   personService = inject(PersonService);
 
-  enterprises = signal<Person[]>([]);
   object = signal(new Person);   
 
   ngOnInit(): void {

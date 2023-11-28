@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
-import { Person } from '@core/models/Person';
-import { PersonService } from '../../services/person.service';
+import { Cargo } from '@core/models/Cargo';
+import { CargoService } from '../../services/cargo.service';
 import { HelpersService } from '@core/services/helpers.service';
 import { ModalFormComponent } from '../modal-form/modal-form.component';
 import { Table } from 'primeng/table';
@@ -13,13 +13,13 @@ import { Table } from 'primeng/table';
 })
 export class TableComponent {
 
-  @Output() rowSelected = new EventEmitter<Person>();
+  @Output() rowSelected = new EventEmitter<Cargo>();
 
-  private personService = inject(PersonService);
+  private CargoService = inject(CargoService);
   private helpersService = inject(HelpersService);
 
-  people = signal<Person[]>([]);
-  selectedPerson = signal<Person>(new Person);
+  cargos = signal<Cargo[]>([]);
+  selectedCargo = signal<Cargo>(new Cargo);
   firstPage = 0;
   rows = 5;
   optionsPage = signal([5, 10, 20]);
@@ -28,15 +28,15 @@ export class TableComponent {
   formComponent!: ModalFormComponent;
 
   ngOnInit() {
-    this.personService.eventTableComponent.emit(this);
+    this.CargoService.eventTableComponent.emit(this);
     this.getAll();
   }
 
   getAll(): void {
     this.loading.set(true);
-    this.personService.getAll().subscribe({
+    this.CargoService.getAll().subscribe({
       next: (res) => { 
-        this.people.set(res);
+        this.cargos.set(res);
         this.loading.set(false);
       },
       error: (err) => { 
@@ -60,13 +60,13 @@ export class TableComponent {
   } 
   
   onRowSelect(event: any) {
-    this.selectedPerson.set(event.data);
-    this.rowSelected.emit(this.selectedPerson());
+    this.selectedCargo.set(event.data);
+    this.rowSelected.emit(this.selectedCargo());
   }
 
   onRowUnselect() {
-    this.selectedPerson.set(new Person);
-    this.rowSelected.emit(this.selectedPerson());
-  }   
+    this.selectedCargo.set(new Cargo);
+    this.rowSelected.emit(this.selectedCargo());
+  } 
 
 }

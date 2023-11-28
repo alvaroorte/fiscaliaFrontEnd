@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PrimeComponentsModule } from '../../prime-components/prime-components.module';
 import { PersonService } from 'src/app/modules/persona/services/person.service';
+import { CargoService } from 'src/app/modules/cargo/services/cargo.service';
+import { UsuarioService } from 'src/app/modules/usuario/services/usuario.service';
 
 @Component({
   selector: 'app-modal-delete',
@@ -15,7 +17,7 @@ import { PersonService } from 'src/app/modules/persona/services/person.service';
   styles: []
 })
 export class ModaldeleteComponent {
-  @Input() serviceGeneric: PersonService | any;
+  @Input() serviceGeneric: PersonService | CargoService | UsuarioService | any;
   @Input() object: number | any;
   tableComponent: any;
 
@@ -40,8 +42,8 @@ export class ModaldeleteComponent {
   confirmDelete() {
     this.openModalDelete(false);
     this.serviceGeneric.delete( parseInt(this.object) ).subscribe({
-      next: ( res:string ) => {
-        this.helpersService.messageNotification("success", "Correcto", "", null);
+      next: ( ) => {
+        this.helpersService.messageNotification("success", "Correcto", "Se borro correctamente", null);
         this.tableComponent.reload();
       },
       error: (err: any) => { 
