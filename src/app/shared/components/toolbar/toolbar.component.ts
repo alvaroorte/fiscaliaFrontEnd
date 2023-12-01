@@ -12,6 +12,8 @@ import { Cargo } from '@core/models/Cargo';
 import { CargoService } from 'src/app/modules/cargo/services/cargo.service';
 import { UnidadService } from 'src/app/modules/unidad/services/unidad.service';
 import { Unidad } from '@core/models/Unidad';
+import { Funcionario } from '@core/models/Funcionario';
+import { FuncionarioService } from 'src/app/modules/funcionario/services/funcionario.service';
 
 @Component({
   selector: 'app-toolbar-common',
@@ -23,8 +25,8 @@ import { Unidad } from '@core/models/Unidad';
 export class ToolbarComponent {
 
 
-  @Input() serviceGeneric: PersonService | UsuarioService | CargoService | UnidadService | null  = null;
-  @Input() object: Person | User | Cargo | Unidad | null = null;
+  @Input() serviceGeneric: PersonService | UsuarioService | CargoService | UnidadService | FuncionarioService | null  = null;
+  @Input() object: Person | User | Cargo | Unidad | Funcionario | null = null;
   tableComponent: any;
   formComponent: any;
   modalDeleteComponent: any;
@@ -61,7 +63,7 @@ export class ToolbarComponent {
     }
   }
 
-  deleteEnterprise() { 
+  deleteEntity() { 
     if ( this.object && this.object.id ) {
       this.modalDeleteComponent.openConfirm();
     } else {

@@ -1,10 +1,12 @@
 import { MessageService } from 'primeng/api';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable()
 export class HelpersService {
     
     constructor(private messageService: MessageService) {}
+
+    @Output() reloadGeneric = new EventEmitter();
 
     messageNotification(severity: string | null, title: string | null,  detail: string | null, life: number | null) {
         severity = severity? severity: "error";

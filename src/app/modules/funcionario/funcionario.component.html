@@ -1,0 +1,21 @@
+<div class="container m-5 mb-0 pb-4">
+    <p-fieldset styleClass="sombra-black">
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center text-primary fadeinleft animation-duration-400">
+                <h2 class="text-white">Funcionario <span class="text-sm"> Gestión de fucnionarios</span> </h2>
+            </div>
+        </ng-template>
+            <div class="grid">
+                <div class="col-12 fadeindown animation-duration-400">
+                    <div class="sombra-black border-round-xl p-2 surface-0">
+                        <app-toolbar-common 
+                            [serviceGeneric]="funcionarioService" [object]="funcionario()"/> 
+                        <app-modal-form></app-modal-form>
+                        <app-table (rowSelected)="setObject($event)" ></app-table>
+                        <app-modal-delete [serviceGeneric]="funcionarioService" [object]="funcionario().id"></app-modal-delete>
+                    </div>
+                </div>
+            </div>
+    </p-fieldset>
+</div>
+<p-toast></p-toast>

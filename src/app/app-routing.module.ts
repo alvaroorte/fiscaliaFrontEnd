@@ -25,6 +25,11 @@ const routes: Routes = [
     
   },
   {
+    path: 'funcionarios',
+    loadComponent: () => import('./modules/funcionario/funcionario.component').then(c => c.FuncionarioComponent)
+    
+  },
+  {
     path: '**',
     pathMatch: 'full',
     loadComponent: () => import('./shared/components/nout-found/nout-found.component').then(c => c.NoutFoundComponent)

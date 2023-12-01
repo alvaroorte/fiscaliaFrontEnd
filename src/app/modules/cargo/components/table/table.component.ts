@@ -30,6 +30,9 @@ export class TableComponent {
   ngOnInit() {
     this.CargoService.eventTableComponent.emit(this);
     this.getAll();
+    this.helpersService.reloadGeneric.subscribe( () => {
+      this.reload();
+    })
   }
 
   getAll(): void {

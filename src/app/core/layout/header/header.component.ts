@@ -53,6 +53,13 @@ export class HeaderComponent {
             routerLinkActive: 'active'
         },
         {
+            label: 'Funcionarios',
+            icon: 'pi pi-user',
+            items: [],
+            routerLink: ['/funcionarios'],
+            routerLinkActive: 'active'
+        },
+        {
             label: 'Unidad',
             icon: 'pi pi-apple',
             items: [

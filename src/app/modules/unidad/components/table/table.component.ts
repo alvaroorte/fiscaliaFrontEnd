@@ -27,6 +27,9 @@ export class TableComponent {
   ngOnInit() {
     this.unidadService.eventTableComponent.emit(this);
     this.getAll();
+    this.helpersService.reloadGeneric.subscribe( () => {
+      this.reload();
+    })
   }
 
   getAll(): void {

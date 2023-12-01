@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
-import { Person } from '@core/models/Person';
-import { PersonService } from '../../services/person.service';
+import { Funcionario } from '@core/models/Funcionario';
+import { FuncionarioService } from '../../services/funcionario.service';
 import { HelpersService } from '@core/services/helpers.service';
-import { ModalFormComponent } from '../modal-form/modal-form.component';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -13,22 +12,20 @@ import { Table } from 'primeng/table';
 })
 export class TableComponent {
 
-  @Output() rowSelected = new EventEmitter<Person>();
+  @Output() rowSelected = new EventEmitter<Funcionario>();
 
-  private personService = inject(PersonService);
+  private funcionarioService = inject(FuncionarioService);
   private helpersService = inject(HelpersService);
 
-  people = signal<Person[]>([]);
-  selectedPerson = signal<Person>(new Person);
+  funcionarios = signal<Funcionario[]>([]);
+  selectedFuncionario = signal<Funcionario>(new Funcionario);
   firstPage = 0;
   rows = 5;
   optionsPage = signal([5, 10, 20]);
   loading = signal(false);
 
-  formComponent!: ModalFormComponent;
-
   ngOnInit() {
-    this.personService.eventTableComponent.emit(this);
+    this.funcionarioService.eventTableComponent.emit(this);
     this.getAll();
     this.helpersService.reloadGeneric.subscribe( () => {
       this.reload();
@@ -37,9 +34,9 @@ export class TableComponent {
 
   getAll(): void {
     this.loading.set(true);
-    this.personService.getAll().subscribe({
+    this.funcionarioService.getAll().subscribe({
       next: (res) => { 
-        this.people.set(res);
+        this.funcionarios.set(res);
         this.loading.set(false);
       },
       error: (err) => { 
@@ -63,13 +60,13 @@ export class TableComponent {
   } 
   
   onRowSelect(event: any) {
-    this.selectedPerson.set(event.data);
-    this.rowSelected.emit(this.selectedPerson());
+    this.selectedFuncionario.set(event.data);
+    this.rowSelected.emit(this.selectedFuncionario());
   }
 
   onRowUnselect() {
-    this.selectedPerson.set(new Person);
-    this.rowSelected.emit(this.selectedPerson());
-  }   
+    this.selectedFuncionario.set(new Funcionario);
+    this.rowSelected.emit(this.selectedFuncionario());
+  }
 
 }

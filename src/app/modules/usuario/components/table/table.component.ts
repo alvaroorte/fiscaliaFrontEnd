@@ -31,6 +31,9 @@ export class TableComponent {
   ngOnInit() {
     this.userService.eventTableComponent.emit(this);
     this.getAll();
+    this.helpersService.reloadGeneric.subscribe( () => {
+      this.reload();
+    })
   }
 
   getAll(): void {
